@@ -1,16 +1,19 @@
 # zhu -- makefile
 
 CC = gcc-8
-CFLAGS = -Wall -std=gnu99 -Ofast
-SRC = engine.c complex.c
-EXECS = engine
+CFLAGS = --std=c99 -Wall -Wextra -Wpedantic -Ofast
+SRC = src/*.c
+EXECS = engine test
 
 .PHONY: all clean
 
-all: $(EXECS)
+all: engine test
 
-engine: $(SRC)
+engine: $(SRC) main.c
 	$(CC) $(CFLAGS) $^ -o $@
 
+test: $(SRC) test.c
+	$(CC) $(CFLAGS) $^ -o $@	
+
 clean:
-	rm -rf $(EXECS)
+	rm -f $(EXECS)
