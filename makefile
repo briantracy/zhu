@@ -1,7 +1,8 @@
 # zhu -- makefile
 
 CC = gcc-8
-CFLAGS = --std=c99 -Wall -Wextra -Wpedantic -Ofast
+CFLAGS = --std=c99 -Wall -Wextra -Wpedantic -Ofast -fsanitize=address -pthread
+LDFLAGS = -fsanitize=address
 SRC = src/*.c
 EXECS = engine test
 
@@ -10,10 +11,10 @@ EXECS = engine test
 all: engine test
 
 engine: $(SRC) main.c
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 test: $(SRC) test.c
-	$(CC) $(CFLAGS) $^ -o $@	
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)	
 
 clean:
 	rm -f $(EXECS)

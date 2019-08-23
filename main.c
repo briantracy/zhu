@@ -4,6 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-    printf("main.c\n");
+    int x[10];
+    printf("%d\n", x[12]);
     return 0;
 }
