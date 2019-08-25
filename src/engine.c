@@ -1,4 +1,5 @@
 // engine.c
+int x;
 #if 0
 
 #include <stdio.h>
